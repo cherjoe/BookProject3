@@ -23,7 +23,7 @@ public class Author
 		//Mandatory
 	}
 	
-	public Author(Long id, String firstName, String lastName, String email) {
+	public Author(String firstName, String lastName, String email) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
