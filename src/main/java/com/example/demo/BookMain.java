@@ -1,10 +1,13 @@
 package com.example.demo;
 
+import java.util.Arrays;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 import com.example.demo.modules.Book;
 import com.example.demo.repository.BookRepository;
@@ -13,7 +16,15 @@ import com.example.demo.repository.BookRepository;
 public class BookMain {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BookMain.class, args);
+		ApplicationContext context =SpringApplication.run(BookMain.class, args);
+		
+		String [] beanNames=context.getBeanDefinitionNames();
+		Arrays.sort(beanNames);
+		for(String bean:beanNames)
+		{
+			System.out.println(bean);
+		}
+//		SpringApplication.run(BookMain.class, args);
 	}
 
 	

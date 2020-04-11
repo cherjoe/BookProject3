@@ -104,5 +104,26 @@ public class AuthorController
 		
 		
 	}
+	
+	@RequestMapping(value="/authors/{idFromHere}",method=RequestMethod.GET )
+	public ResponseEntity<Author> getAuthorById(@PathVariable(name="idFromHere") Long id)
+	{  
+		ResponseEntity respEnt;
+		if(authorRepo.existsById(id))
+		{
+		authorRepo.findById(id);
+		respEnt=new ResponseEntity<String>("Found", HttpStatus.OK);
+		return respEnt;
+		}
+		else
+		{
+		 respEnt=new ResponseEntity<String>("Not Found!", HttpStatus.NOT_FOUND);
+		 return respEnt;
+		}
+		
+		
+		
+		
+	}
 
 }
