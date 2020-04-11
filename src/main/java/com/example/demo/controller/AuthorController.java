@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -106,23 +107,17 @@ public class AuthorController
 	}
 	
 	@RequestMapping(value="/authors/{idFromHere}",method=RequestMethod.GET )
-	public ResponseEntity<Author> getAuthorById(@PathVariable(name="idFromHere") Long id)
+	public Optional<Author> getAuthorById(@PathVariable(name="idFromHere") Long id)
 	{  
-		ResponseEntity respEnt;
 		if(authorRepo.existsById(id))
 		{
-		authorRepo.findById(id);
-		respEnt=new ResponseEntity<String>("Found", HttpStatus.OK);
-		return respEnt;
+			Optional<Author> author=authorRepo.findById(id);
+			return author;
 		}
 		else
 		{
-		 respEnt=new ResponseEntity<String>("Not Found!", HttpStatus.NOT_FOUND);
-		 return respEnt;
+			return null;
 		}
-		
-		
-		
 		
 	}
 
