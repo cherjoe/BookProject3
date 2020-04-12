@@ -8,5 +8,5 @@ import com.example.demo.modules.Author;
 @Repository
 public interface AuthorRepository extends CrudRepository<Author, Long>
 {
-
+	
 }

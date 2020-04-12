@@ -23,18 +23,6 @@ public class BookController
 	@Autowired
 	BookRepository bookRepo;
 	
-//	@GetMapping("/addbooks")
-//	public String addBooks()
-//	{
-//		Book book1=new Book( "Book1","Publisher1", "Author1",201.00);
-//		bookRepo.save(book1);
-//		
-//		Book book2=new Book( "Book2","Publisher2", "Author2",202.00);
-//		bookRepo.save(book2);
-//		
-//		return "Books have been created!!";
-//	}
-	
 //	@GetMapping("/books")
 	@RequestMapping(value="/books", method=RequestMethod.GET, 
 			produces= { MediaType.APPLICATION_JSON_VALUE} )
@@ -47,27 +35,38 @@ public class BookController
 		return(List<Book>) bookRepo.findAll();
 	}
 
+	@RequestMapping(value="/books",method=RequestMethod.POST )
+	public ResponseEntity<Book> createBook(@RequestBody Book booksToBeCreated)
+	{
+		
+		Book newlyCreatedBook=bookRepo.save(booksToBeCreated);
+		
+		ResponseEntity respEnt=new ResponseEntity<Book>(newlyCreatedBook, HttpStatus.CREATED);
+		
+		return respEnt;
+		
+	}
 	
-//	@RequestMapping(value="/books",method=RequestMethod.POST )
-//	public String addBook1(@RequestBody Book bookToBeCreated)
-//	{
-//		bookRepo.save(bookToBeCreated);
-//		
-//		return "Book Created";
-//	}
-//	
-////	@RequestMapping(value="/books",method=RequestMethod.POST )
-////	public ResponseEntity<Book> addBook2(@RequestBody Book booksToBeCreated)
-////	{
-////		
-////		Book newlyCreatedBook=bookRepo.save(booksToBeCreated);
-////		
-////		ResponseEntity respEnt=new ResponseEntity<Book>(newlyCreatedBook, HttpStatus.CREATED);
-////		
-////		return respEnt;
-////		
-////	}
-//	
+	
+	@GetMapping("/books/findbytitle/{titlefromhere}")
+	public List<Book> getByTitle(@PathVariable(name="titlefromhere") String title)
+	{
+		return bookRepo.findByTitle(title);
+		
+	}
+	
+	
+	@GetMapping("/books/findbyprice/{pricefromhere}")
+	public List<Book> getByPrice(@PathVariable(name="pricefromhere") Double price)
+	{
+		return bookRepo.findByPriceGreaterThan(price);
+		
+	}
+	
+	
+	
+	
+	
 //	@RequestMapping(value="/books/{idFromHere}",method=RequestMethod.PATCH )
 //	public ResponseEntity<Book> updateBook(@PathVariable(name="idFromHere") Long id,@RequestBody Book bookToBeUpdated)
 //	{   ResponseEntity respEnt;

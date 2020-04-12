@@ -24,7 +24,7 @@ public class Author
 	private String email;
 
 	@OneToMany(mappedBy="author") //Joining Table
-	@JsonBackReference
+//	@JsonBackReference
 	private List<Book> book;
 	
 	public Author()

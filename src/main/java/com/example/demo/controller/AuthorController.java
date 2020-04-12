@@ -52,17 +52,6 @@ public class AuthorController
 		return "Author Created";
 	}
 	
-//	@RequestMapping(value="/books",method=RequestMethod.POST )
-//	public ResponseEntity<Book> addBook2(@RequestBody Book booksToBeCreated)
-//	{
-//		
-//		Book newlyCreatedBook=bookRepo.save(booksToBeCreated);
-//		
-//		ResponseEntity respEnt=new ResponseEntity<Book>(newlyCreatedBook, HttpStatus.CREATED);
-//		
-//		return respEnt;
-//		
-//	}
 	
 	@RequestMapping(value="/authors/{idFromHere}",method=RequestMethod.PATCH )
 	public ResponseEntity<Author> updateAuthor(@PathVariable(name="idFromHere") Long id,@RequestBody Author authorToBeUpdated)

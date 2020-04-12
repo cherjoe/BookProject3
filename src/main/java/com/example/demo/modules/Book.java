@@ -18,7 +18,7 @@ public class Book
 	private String publisher;
 	
 	@OneToOne
-	@JsonManagedReference
+//	@JsonManagedReference
 	private Author author;
 	private Double price;
 
