@@ -1,31 +1,61 @@
 package com.example.demo.modules;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
-@Entity(name="books")
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+@Entity(name="book")
 public class Book 
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	private String title;
+	private String publisher;
 	
-	private String book_author;
-	
-	@Column(name="book_name", nullable=false, length=20)
-	private String bookName;
-	
-	
-	private Book() {}
+	@OneToOne
+	@JsonManagedReference
+	private Author author;
+	private Double price;
 
-	public Book(String name, String author) {
+	public Book()
+	{
+		
+	}
+	public Book(String title, String publisher, Author author, Double price) {
 		super();
-		this.id = id;
-		this.book_author = author;
-		this.bookName = name;
+		this.title = title;
+		this.publisher = publisher;
+		this.author = author;
+		this.price = price;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
 	public Long getId() {
@@ -36,20 +66,14 @@ public class Book
 		this.id = id;
 	}
 
-	public String getAuthor() {
-		return book_author;
+	public Author getAuthor() {
+		return author;
 	}
 
-	public void setAuthor(String author) {
-		this.book_author = author;
+	public void setAuthor(Author author) {
+		this.author = author;
 	}
 
-	public String getName() {
-		return bookName;
-	}
-
-	public void setName(String name) {
-		this.bookName = name;
-	}
+	
 
 }

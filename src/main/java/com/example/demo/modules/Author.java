@@ -1,8 +1,13 @@
 package com.example.demo.modules;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity      //Creates table in database
 public class Author
@@ -18,6 +23,10 @@ public class Author
 	
 	private String email;
 
+	@OneToMany(mappedBy="author") //Joining Table
+	@JsonBackReference
+	private List<Book> book;
+	
 	public Author()
 	{
 		//Mandatory
@@ -25,7 +34,6 @@ public class Author
 	
 	public Author(String firstName, String lastName, String email) {
 		super();
-		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;

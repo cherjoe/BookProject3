@@ -23,87 +23,91 @@ public class BookController
 	@Autowired
 	BookRepository bookRepo;
 	
-	@GetMapping("/addbooks")
-	public String addBooks()
-	{
-		Book book1=new Book( "Book1", "Author1");
-		bookRepo.save(book1);
-		
-		Book book2=new Book( "Book2", "Author2");
-		bookRepo.save(book2);
-		
-		return "Books have been created!!";
-	}
+//	@GetMapping("/addbooks")
+//	public String addBooks()
+//	{
+//		Book book1=new Book( "Book1","Publisher1", "Author1",201.00);
+//		bookRepo.save(book1);
+//		
+//		Book book2=new Book( "Book2","Publisher2", "Author2",202.00);
+//		bookRepo.save(book2);
+//		
+//		return "Books have been created!!";
+//	}
 	
 //	@GetMapping("/books")
 	@RequestMapping(value="/books", method=RequestMethod.GET, 
-			produces= { MediaType.APPLICATION_XML_VALUE,MediaType.APPLICATION_JSON_VALUE} )
+			produces= { MediaType.APPLICATION_JSON_VALUE} )
 	public List<Book> getBook()
 	{
+		for(Book book:bookRepo.findAll())
+		{
+			System.out.println(book);
+		}
 		return(List<Book>) bookRepo.findAll();
 	}
 
 	
-	@RequestMapping(value="/books",method=RequestMethod.POST )
-	public String addBook1(@RequestBody Book bookToBeCreated)
-	{
-		bookRepo.save(bookToBeCreated);
-		
-		return "Book Created";
-	}
-	
 //	@RequestMapping(value="/books",method=RequestMethod.POST )
-//	public ResponseEntity<Book> addBook2(@RequestBody Book booksToBeCreated)
+//	public String addBook1(@RequestBody Book bookToBeCreated)
 //	{
+//		bookRepo.save(bookToBeCreated);
 //		
-//		Book newlyCreatedBook=bookRepo.save(booksToBeCreated);
+//		return "Book Created";
+//	}
+//	
+////	@RequestMapping(value="/books",method=RequestMethod.POST )
+////	public ResponseEntity<Book> addBook2(@RequestBody Book booksToBeCreated)
+////	{
+////		
+////		Book newlyCreatedBook=bookRepo.save(booksToBeCreated);
+////		
+////		ResponseEntity respEnt=new ResponseEntity<Book>(newlyCreatedBook, HttpStatus.CREATED);
+////		
+////		return respEnt;
+////		
+////	}
+//	
+//	@RequestMapping(value="/books/{idFromHere}",method=RequestMethod.PATCH )
+//	public ResponseEntity<Book> updateBook(@PathVariable(name="idFromHere") Long id,@RequestBody Book bookToBeUpdated)
+//	{   ResponseEntity respEnt;
+//		if(bookRepo.existsById(id))
+//		{
+//			bookToBeUpdated.setId(id);
+//			Book updateBook=bookRepo.save(bookToBeUpdated);
+//			
+//			respEnt=new ResponseEntity<Book>(updateBook, HttpStatus.ACCEPTED);
+//		}
+//		else
+//		{
+//			respEnt=new ResponseEntity<Book>(bookToBeUpdated, HttpStatus.NOT_FOUND);
+//			return respEnt;		
+//		}
+//		return respEnt;	
 //		
-//		ResponseEntity respEnt=new ResponseEntity<Book>(newlyCreatedBook, HttpStatus.CREATED);
-//		
-//		return respEnt;
 //		
 //	}
-	
-	@RequestMapping(value="/books/{idFromHere}",method=RequestMethod.PATCH )
-	public ResponseEntity<Book> updateBook(@PathVariable(name="idFromHere") Long id,@RequestBody Book bookToBeUpdated)
-	{   ResponseEntity respEnt;
-		if(bookRepo.existsById(id))
-		{
-			bookToBeUpdated.setId(id);
-			Book updateBook=bookRepo.save(bookToBeUpdated);
-			
-			respEnt=new ResponseEntity<Book>(updateBook, HttpStatus.ACCEPTED);
-		}
-		else
-		{
-			respEnt=new ResponseEntity<Book>(bookToBeUpdated, HttpStatus.NOT_FOUND);
-			return respEnt;		
-		}
-		return respEnt;	
-		
-		
-	}
-	
-	
-	@RequestMapping(value="/books/{idFromHere}",method=RequestMethod.DELETE )
-	public ResponseEntity<Book> deleteBook(@PathVariable(name="idFromHere") Long id)
-	{  
-		ResponseEntity respEnt;
-		if(bookRepo.existsById(id))
-		{
-		bookRepo.deleteById(id);
-		respEnt=new ResponseEntity<String>("Deleted", HttpStatus.OK);
-		return respEnt;
-		}
-		else
-		{
-		 respEnt=new ResponseEntity<String>("Not Deleted", HttpStatus.NOT_FOUND);
-		 return respEnt;
-		}
+//	
+//	
+//	@RequestMapping(value="/books/{idFromHere}",method=RequestMethod.DELETE )
+//	public ResponseEntity<Book> deleteBook(@PathVariable(name="idFromHere") Long id)
+//	{  
+//		ResponseEntity respEnt;
+//		if(bookRepo.existsById(id))
+//		{
+//		bookRepo.deleteById(id);
+//		respEnt=new ResponseEntity<String>("Deleted", HttpStatus.OK);
+//		return respEnt;
+//		}
+//		else
+//		{
+//		 respEnt=new ResponseEntity<String>("Not Deleted", HttpStatus.NOT_FOUND);
+//		 return respEnt;
+//		}
 		
 		
 		
 		
-	}
+//	}
 	
 }
