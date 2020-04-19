@@ -1,4 +1,4 @@
-package com.example.demo.modules;
+package com.example.demo.entities;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class Author
 	private String email;
 
 	@OneToMany(mappedBy="author") //Joining Table
-//	@JsonBackReference
+	@JsonBackReference
 	private List<Book> book;
 	
 	public Author()

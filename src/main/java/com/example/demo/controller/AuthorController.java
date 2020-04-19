@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.modules.Author;
+import com.example.demo.entities.Author;
 import com.example.demo.repository.AuthorRepository;
 
 @RestController

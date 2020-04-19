@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.modules.Book;
+import com.example.demo.entities.Book;
 import com.example.demo.repository.BookRepository;
 
 
@@ -63,7 +63,12 @@ public class BookController
 		
 	}
 	
-	
+	@GetMapping("/books/findbyname/{authorfirstname}")
+	public List<Book> getByAuthorFirstName(@PathVariable(name="authorfirstname") String firstName)
+	{
+		return bookRepo.findByAuthorFirstName(firstName);
+		
+	}
 	
 	
 	
