@@ -49,7 +49,7 @@ public class BookController
 	
 	
 	@GetMapping("/books/findbytitle/{titlefromhere}")
-	public List<Book> getByTitle(@PathVariable(name="titlefromhere") String title)
+	public List<Book> ssgetByTitle(@PathVariable(name="titlefromhere") String title)
 	{
 		return bookRepo.findByTitle(title);
 		
@@ -57,7 +57,7 @@ public class BookController
 	
 	
 	@GetMapping("/books/findbyprice/{pricefromhere}")
-	public List<Book> getByPrice(@PathVariable(name="pricefromhere") Double price)
+	public List<Book> ssgetByPrice(@PathVariable(name="pricefromhere") Double price)
 	{
 		return bookRepo.findByPriceGreaterThan(price);
 		

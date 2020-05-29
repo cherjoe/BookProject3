@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import com.example.demo.entities.Author;
 import com.example.demo.entities.Book;
@@ -16,6 +17,7 @@ import com.example.demo.repository.AuthorRepository;
 import com.example.demo.repository.BookRepository;
 
 @SpringBootApplication
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class BookMain {
 
 	public static void main(String[] args) {

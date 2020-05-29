@@ -35,4 +35,10 @@ public class UserContoller
 	{
 		return userService.saveUser(user);
 	}
+	
+	@GetMapping("/string")
+	public String getString()
+	{
+		return "GET STRING";
+	}
 }
